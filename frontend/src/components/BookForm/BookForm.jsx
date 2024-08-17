@@ -12,13 +12,12 @@ const BookForm = () => {
 
   const handleAddRandomBook = () => {
     const randonIndex = Math.floor(Math.random() * booksData.length);
-    console.log(booksData);
-    console.log(randonIndex);
     const randomBook = booksData[randonIndex];
 
     const randomBookWithID = {
       ...randomBook,
       id: uuidv4(),
+      isFavorite: false,
     };
 
     dispatch(addBook(randomBookWithID));
@@ -28,7 +27,7 @@ const BookForm = () => {
     e.preventDefault();
 
     if (title && author) {
-      const book = { title, author, id: uuidv4() };
+      const book = { title, author, id: uuidv4(), isFavorite: false };
       dispatch(addBook(book));
 
       setTitle('');
